@@ -164,7 +164,13 @@ public class CreateOrderServiceImpl {
 
         
         
-        
+        try {
+			CloseableHttpResponse response3 = httpclient.execute(httpPost,context);
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		
 	}
