@@ -51,9 +51,8 @@ public class CreateOrderServiceImpl {
 	
 	private ProcessIoService processIo;
 	
-	private String loginUrl ="http://api.test.alipay.net/home/auto_login_by_guest.htm?service=http%3A%2F%2Fapi.test.alipay.net%2Fhome%2Fcas_security_check.htm";
-	private String createUrlStable = "http://api.test.alipay.net/atinterface/execute_api.htm";
-	private String createUrlTest = "http://tbapi.stable.alipay.com";
+	private String loginUrl ;
+	private String createUrlStable ;
 	public final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.151 Safari/535.19";
 	
 	public void createOrder(){
@@ -239,6 +238,14 @@ public class CreateOrderServiceImpl {
 
 	public void setProcessIo(ProcessIoService processIo) {
 		this.processIo = processIo;
+	}
+
+	public void setLoginUrl(String loginUrl) {
+		this.loginUrl = loginUrl;
+	}
+
+	public void setCreateUrlStable(String createUrlStable) {
+		this.createUrlStable = createUrlStable;
 	}
 
 	
