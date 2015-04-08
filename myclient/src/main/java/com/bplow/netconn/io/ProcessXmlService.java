@@ -14,7 +14,9 @@ import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProcessXmlService {
 	
 	private static Logger logger = LoggerFactory.getLogger(ProcessXmlService.class);
