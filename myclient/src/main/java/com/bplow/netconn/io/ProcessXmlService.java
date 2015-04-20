@@ -20,18 +20,22 @@ import org.springframework.stereotype.Service;
 public class ProcessXmlService {
 	
 	private static Logger logger = LoggerFactory.getLogger(ProcessXmlService.class);
+	String xpath ="/Cartoon/Message/CPReq/@id";
+	
 	
 	public void readXml() throws IOException{
 		SAXReader reader = new SAXReader();
-		InputStream in = this.getClass().getResourceAsStream("/requestparam/map.xml");
+		InputStream in = this.getClass().getResourceAsStream("/requestparam/req.xml");
 		try {
 			Document document = reader.read(in);
-			Node node = document.selectSingleNode( "//map/@sevice" );
+			Node node = document.selectSingleNode( "/Cartoon/Message/node()[1]/@id" );
 			
 			//logger.info(node.getText());
 			
 			
-			XPath xpathSelector = DocumentHelper.createXPath("/map[@name='sevice']/text()");
+			//XPath xpathSelector = DocumentHelper.createXPath("/map[@name='sevice']/text()");
+			xpath ="/Cartoon/Message/node()[1]/@id";
+			XPath xpathSelector = DocumentHelper.createXPath(xpath);
 		    //List results = xpathSelector.selectNodes(document);
 		    Node node2 = xpathSelector.selectSingleNode(document);
 		    
