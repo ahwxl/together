@@ -8,7 +8,6 @@ import com.bplow.netconn.base.pairencrypt.CertificateCoder;
 
 /**
  * 
- * @author 梁栋
  * @version 1.0
  * @since 1.0
  */
