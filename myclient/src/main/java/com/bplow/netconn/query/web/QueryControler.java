@@ -27,7 +27,7 @@ public class QueryControler {
 		return "query";
 	}
 	
-	@RequestMapping(value="/config.vm",method = RequestMethod.GET,produces="text/html;charset=UTF-8")
+	@RequestMapping(value="/config",method = RequestMethod.GET,produces="text/html;charset=UTF-8")
 	public String doConfig(Map<String, Object> model){
 		
 		
