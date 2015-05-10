@@ -1,23 +1,36 @@
 package com.bplow.netconn.query.web;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.StringWriter;
+import java.sql.SQLException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bplow.netconn.query.dao.entity.Ad;
+import com.bplow.netconn.query.module.ReqForm;
+import com.bplow.netconn.query.service.Adservice;
+
 
 @Controller
 public class JsControler {
+	
+	@Autowired
+	private Adservice adService;
 	
 	@RequestMapping(value = "/SC/main", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	public String mainPage(){
@@ -26,25 +39,37 @@ public class JsControler {
 		return "ad/main";
 	}
 	
-	
+	/**
+	 * 获取基础 basejs
+	 * 
+	 * 
+	 * @param model
+	 * @param reqForm
+	 * @param request
+	 * @param respose
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/SC/base", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	public void obtainScript(Map<String, Object> model,
+	public void obtainScript(Map<String, Object> model,ReqForm reqForm,
 			HttpServletRequest request, HttpServletResponse respose) throws IOException {
 		
 		respose.setContentType("text/javascript");
 		respose.setCharacterEncoding("UTF-8");
-		
-		OutputStream os =respose.getOutputStream();
+		BufferedWriter bw = new BufferedWriter(new StringWriter());
+
+		OutputStream out = respose.getOutputStream();
 		
 		InputStream in = this.getClass().getResourceAsStream("/js/base.min.js");
 		
-		
+		String str = adService.obtionBaseScript(reqForm, in, out);
 		//InputStream im = IOUtils.toInputStream("(function(a){alert(a)})('你好a')","UTF-8");
+		InputStream im = IOUtils.toInputStream(str);
 		
-		IOUtils.copy(in, os);
+		IOUtils.copy(im, out);
 		
-		os.flush();
-		os.close();
+		//in.close();
+		out.flush();
+		out.close();
 
 	}
 	
@@ -80,41 +105,30 @@ public class JsControler {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/SC/execute", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	public void obtainScript3(Map<String, Object> model,
+	public void obtainScript3(Map<String, Object> model,ReqForm reqForm,
 			HttpServletRequest request, HttpServletResponse respose) throws IOException {
-		
 		respose.setContentType("text/javascript");
 		respose.setCharacterEncoding("UTF-8");
 		
-		String exeNum = request.getParameter("c");
-		String cnidx  = request.getParameter("cnidx");
-		String adName = "";
-		String property ="";
-		
-		if("1".equals(cnidx)){
-			adName = "MZADX";
-			property = "{\"l\":\"7577\"}";
-		}else{
-			adName = "YOUDAO";
-			property = "{'slotid':'1380'}";
-		}
-		
 		OutputStream os =respose.getOutputStream();
 		
-		//InputStream in = IOUtils.toInputStream("(function (win, doc) {"+exeNum+"(0,'YOUDAO',{'slotid':'1387'})})(window, document);","UTF-8");;
-		
-		InputStream in = IOUtils.toInputStream("(function (win, doc) {"
-				+ exeNum + "(0,'" + adName
-				+ "',"+property+")})(window, document);", "UTF-8");
-		
-		
+		String str = adService.executeMethod(reqForm, os);
+		InputStream in = IOUtils.toInputStream(str);
 
 		IOUtils.copy(in, os);
 		
 		os.flush();
 		os.close();
 	}
-	
+	/**
+	 * 加载包装客户 js 
+	 * 
+	 * @param customerName
+	 * @param model
+	 * @param request
+	 * @param respose
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/SC/{customerName}/js", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	public void obtainScript4(@PathVariable("customerName") String customerName,Map<String, Object> model,
 			HttpServletRequest request, HttpServletResponse respose) throws IOException {
@@ -141,7 +155,7 @@ public class JsControler {
 		
 		respose.setContentType("text/javascript");
 		respose.setCharacterEncoding("UTF-8");
-				
+		
 		OutputStream os =respose.getOutputStream();
 		
 		InputStream in = this.getClass().getResourceAsStream("/js/MZADX.js");
@@ -175,6 +189,20 @@ public class JsControler {
 		
 		os.flush();
 		os.close();
-	} 
+	}
+	
+	@RequestMapping(value = "/ad/addAdInfo", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public String insertAd(Map<String, Object> model,Ad ad,HttpServletRequest request) throws SQLException{
+		adService.addAd(ad);
+		
+		
+		return null;
+	}
+	
+	@RequestMapping(value = "/ad/queryAdList", produces = "text/html;charset=UTF-8")
+	public void queryAdList(Map<String, Object> model,HttpServletRequest request){
+		
+		
+	}
 
 }
