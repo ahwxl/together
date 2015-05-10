@@ -1,8 +1,11 @@
 package com.bplow.netconn.base.tmpl;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -20,6 +23,7 @@ import org.apache.velocity.exception.ResourceNotFoundException;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 
 
@@ -29,12 +33,17 @@ import org.springframework.stereotype.Service;
  * @version $Id: VelocityHelper.java, v 0.1 2015年4月29日 上午10:18:17 wb-wangxiaolei.xl Exp $
  */
 @Service
-public class VelocityHelper {
+public class VelocityHelper implements InitializingBean{
 	
 	private static Logger logger = LoggerFactory.getLogger(VelocityHelper.class);
 	
 	String configPath ="/table/velocity/velocity.properties";
 	VelocityEngine vEngine;
+	
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		init();
+	}
 	
 	public void init() throws Exception{
 		vEngine = new VelocityEngine();
@@ -78,6 +87,31 @@ public class VelocityHelper {
 		return writer.toString();
 	}
 	
+	/**
+	 * 
+	 * @param map
+	 * @param in
+	 * @param out
+	 * @return
+	 * @throws Exception
+	 */
+	public String renderTemplate(Map map, InputStream in,OutputStream out)
+			throws Exception {
+		StringWriter writer = new StringWriter();
+		//BufferedWriter bw = new BufferedWriter(writer);
+		//OutputStreamWriter  opw = new OutputStreamWriter(out);
+		VelocityContext context = this.createContext(map);
+		vEngine.evaluate(context, writer, "tmpl", in);
+		//vEngine.mergeTemplate("/welcome.vm", "UTF-8", context, writer);
+		
+		//vEngine.evaluate(context, opw, "tmpl", in);
+		
+		logger.error("获取base js:{}",writer.toString());
+		return writer.toString();
+	}
+	
+	
+	
 	public String renderTemplate(Map map, String tmplName) throws ResourceNotFoundException, ParseErrorException, Exception{
 		StringWriter writer = new StringWriter();
 		VelocityContext context = this.createContext(map);
@@ -107,7 +141,6 @@ public class VelocityHelper {
 		
 		return context;
 	}
-	
-	
+
 
 }
