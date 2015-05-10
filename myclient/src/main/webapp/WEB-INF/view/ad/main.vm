@@ -3,9 +3,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>myclient</title>
-<script type="text/javascript" src="SC/start"></script>
+<!--<script type="text/javascript" src="SC/start"></script>-->
 </head>
 <body>
 你好！！！
+<div id="AD_Sellbuyads"> 
+   <script src="http://localhost:8080/myclient/SC/base?id=cnd2_cnd3&ext=7577|1387" type="text/javascript"></script> 
+</div>
+
+
 </body>
 </html>
