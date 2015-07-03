@@ -21,6 +21,8 @@
     -->
     <context:component-scan
             base-package="com.bplow.netconn.query.web"/>
+    <context:component-scan
+            base-package="com.bplow.netconn.cms.web"/>
 
     <!-- <mvc:annotation-driven conversion-service="conversionService"/> -->
 	<mvc:annotation-driven>

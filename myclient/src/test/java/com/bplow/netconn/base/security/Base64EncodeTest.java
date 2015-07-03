@@ -2,6 +2,7 @@ package com.bplow.netconn.base.security;
 
 import java.io.IOException;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
 
-@ContextConfiguration(locations = { "/applicationContext.xml" })
+@ContextConfiguration(locations = { "/applicationContext.xml","/applicationContext-myclient.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
 public class Base64EncodeTest {
@@ -18,18 +19,21 @@ public class Base64EncodeTest {
 	@Autowired
 	Base64Encode base64Encode;
 	
+	
 	@Test
 	public void encode() throws IOException{
 		
-		base64Encode.encodeString("MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC/I5wFr4pQLv9gogstsQ5TsZX/9rKvpSWTax1u6FTQdphQD+pvb76UvLhwYMGkOLZpLmIxnwdn3n4sbraPL5nuN7LR+LlhevfnwqQ12EIf7LNnbK7NqPHWbaojBzCpqBs6yMbYAUu/TFHHgkalia9To4sHObA4/XHrLGPb4MI0XwIDAQAB");
+		base64Encode.encodeString("ab2");
 		
-		base64Encode.encodeString("123456");
+		//base64Encode.encodeString("123456");
 	}
-	
-	
-	public void decode(){
-		
-		
+	//@Ignore
+	@Test
+	public void decode() throws IOException{
+		String str ="RuioCHFoe8Q/ncQ0eKf2hcLcu1FcGRj6gJwLBQYS7VG4qIHiGjHBzuInCKYdA7bjP1T8GvDLVtvSxCvEon3A+5iW2KQSDBNZ0shRyc3BC+au/fJ1ZimTixvNrhH6782SzrDTCZ9jN+4Z52dEVDycBVJccWghIyy2tGRNwDWQfxhj0W+fQp19V8WqNXOwP99hBo3aRHh19z8zvTwp2edJMJ5x8oM2jtdkD4vmpuhW+dEnLnPZn6Q6qRXLCm1LdGUsS+vzjMaKHxyWOiXmPkRm3Kb1GRJFbBr8EaWjXTCUnhOTwuBTiFcEoYphgTZgHxEDxLas9VUyAHHGA3TNl/nSSQ==";//
+		String strtmp = base64Encode.decodeString(str);
+		System.out.println(strtmp);
+		//System.out.println(new String(strtmp.getBytes(),"UTF-8"));
 	}
 
 }

@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-@ContextConfiguration(locations = { "/applicationContext.xml" })
+@ContextConfiguration(locations = { "/applicationContext.xml","/applicationContext-myclient.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
 public class jksToBase64EncodeTest {
@@ -20,9 +20,9 @@ public class jksToBase64EncodeTest {
 	
 	@Test
 	public void todo() throws IOException{
-		jksToBase64Encode.jksToBase64();
+		//jksToBase64Encode.jksToBase64();
 		
-		
+		jksToBase64Encode.jksDecodeBase64();
 	}
 	
 
