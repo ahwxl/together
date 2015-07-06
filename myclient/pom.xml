@@ -7,10 +7,9 @@
   <packaging>war</packaging>
 
   <name>myclient</name>
-
-
+  
   <properties>
-    <java.version>1.7</java.version>
+    <java.version>1.6</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <springframework.version>4.1.6.RELEASE</springframework.version>
     <jettyVersion>9.0.2.v20130417</jettyVersion>
@@ -19,6 +18,7 @@
     <tomcat.servlet.version>7.0.30</tomcat.servlet.version>
 	<ehcache.version>2.6.9</ehcache.version>
 	<shiro.version>1.2.3</shiro.version>
+	<freemarker.version>2.3.21</freemarker.version>
   </properties>
 
   <dependencies>
@@ -268,6 +268,12 @@
 		<groupId>net.sf.ehcache</groupId>
 		<artifactId>ehcache-core</artifactId>
 		<version>${ehcache.version}</version>
+	</dependency>
+	<!-- template engine -->
+	<dependency>
+		<groupId>org.freemarker</groupId>
+		<artifactId>freemarker</artifactId>
+		<version>${freemarker.version}</version>
 	</dependency>
     
   </dependencies>
