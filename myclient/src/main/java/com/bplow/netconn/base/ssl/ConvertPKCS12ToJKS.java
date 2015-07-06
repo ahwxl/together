@@ -14,9 +14,9 @@ public class ConvertPKCS12ToJKS {
 	public static final String JKS = "JKS";
 
 	// 证书和路径
-	public static final String INPUT_KEYSTORE_FILE = "c:/mykey.p12";
-	public static final String KEYSTORE_PASSWORD = "12345678";
-	public static final String OUTPUT_KEYSTORE_FILE = "c:/change.jks";
+	public static final String INPUT_KEYSTORE_FILE = "D:/www/workspace/git_ws/myclient/src/main/resources/jks/spdb.pfx";
+	public static final String KEYSTORE_PASSWORD = "111111";
+	public static final String OUTPUT_KEYSTORE_FILE = "D:/change.jks";
 
 	// 证书别名
 	public static final String CERT_ALIAS = "change";
@@ -25,6 +25,7 @@ public class ConvertPKCS12ToJKS {
 		KeyStore inputKeyStore = KeyStore.getInstance(PKCS12);
 		// 载P12证书
 		FileInputStream fis = new FileInputStream(INPUT_KEYSTORE_FILE);
+		
 		// P12证书密
 		char[] nPassword = KEYSTORE_PASSWORD.toCharArray();
 		inputKeyStore.load(fis, nPassword);

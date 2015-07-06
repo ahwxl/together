@@ -33,9 +33,32 @@ public class jksToBase64Encode {
             in.close();
         }
 		
-		
 	}
 	
+	public void jksDecodeBase64() throws IOException{
+        InputStream in = this.getClass().getResourceAsStream("/jks/zhongan_base64.jks");
+		
+		String certContainer = null;
+        try {
+            byte[] bInstCert = new byte[in.available()];
+            in.read(bInstCert);
+            in.close();
+            certContainer = new String(Base64.decodeBase64(bInstCert));
+            File file = new File("D:/unbase64.jks");
+            file.createNewFile();
+            FileUtils.writeStringToFile(file, certContainer);
+        } catch (IOException e) {
+        	log.error("【证书上传】IO异常", e);
+        } finally {
+            in.close();
+        }
+	}
 	
+	public static void main(String[] args) {
+		String abc= "abc汪想";
+		String base64abc = new String(Base64.encodeBase64(abc.getBytes()));
+		String unbase64 = new String(Base64.decodeBase64(base64abc.getBytes()));
+		System.out.println(unbase64);
+	}
 
 }
