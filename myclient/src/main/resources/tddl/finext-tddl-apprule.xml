@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sofa="http://www.alipay.com/schema/service"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:webflow="http://www.springframework.org/schema/webflow-config"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+         http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd
+		 http://www.alipay.com/schema/service http://www.alipay.com/schema/service/sofa-service.xsd"
+	default-autowire="byName">
+	
+	<!-- <bean id="root" class="com.taobao.tddl.common.config.beans.AppRule"
+		init-method="init">
+		<property name="masterRule" ref="finextRwRule"/>
+		<property name="slaveRule" ref="finextRwRule"/>
+	</bean> -->
+	<!--================================================================ -->
+	<!-- == 读写规则 == -->
+	<!--================================================================ -->
+	<bean id="vtabroot" class="com.taobao.tddl.interact.rule.VirtualTableRoot">
+	    <!-- 没有被配置在tableRules的逻辑表都将在这个group里，以单表形式执行 -->
+	    <property name="defaultDbIndex" value="TDDL_DEFAULT_GROUP" />  
+		<!-- 数据库类型为mysql -->
+		<property name="dbType" value="MYSQL"/>
+		<property name="tableRules">
+			<map>
+				<!-- 这里如果有多个表，就填写多个键值对，其中key为逻辑表名，value为该逻辑表对应的拆分规则 -->
+				<entry key="user" value-ref="user_bean"/>
+			</map>
+		</property>
+	</bean>
+	
+	<!-- 规则1：根据短清算流水号分库分表，共10库，每库10张表，表后缀为tablename_05 -->
+	<bean id="finext_dbtb_rule_01" init-method="init" class="com.taobao.tddl.common.config.beans.TableRule">
+		<property name="dbIndexes" value="finext00,finext01"/>
+		<!--分库规则-->
+		<property name="dbRuleArray">
+			<list>
+				<value>
+					return #id# % 2;
+				</value>
+			</list>
+		</property>
+		<!-- 分表规则 -->
+		<property name="tbRuleArray">
+			<list>
+				<value>
+					return #id# % 2;
+				</value>
+			</list>
+		</property>
+		<!-- 表后缀：tablename_00..tablename_99 -->
+		<property name="tbSuffix" value="throughAllDB:[00-01]" />
+		<!-- 如果分库找不到分库信息，扫描所有的数据库 -->
+		<property name="disableFullTableScan" value="true"/>
+	</bean>
+
+
+	<bean id="user_bean" class="com.taobao.tddl.interact.rule.TableRule">
+		<!-- groupKey格式框架，{}中的数将会被dbRuleArray的值替代，并保持位数 -->
+		<property name="dbNamePattern" value="user{00}" />
+		<!-- 具体的分库规则 -->
+		<property name="dbRuleArray">
+			<!-- 按照user_id取模划分64张表，结果除以32后分到两个库中 -->
+			<value>#id# % 2</value>
+		</property>
+		<!-- 具体表名格式框架，{}中的数将会被tbRuleArray的值替代，并保持位数 -->
+		<property name="tbNamePattern" value="user{00}"></property>
+		<!-- 具体的分表规则 -->
+		<property name="tbRuleArray">
+			<!-- 按照user_id取模划分64张表 -->
+			<value>#id# % 2</value>
+		</property>
+		<!-- 全表扫描开关，默认关闭，是否允许应用端在没有给定分表键值的情况下查询全表 -->
+		<property name="allowFullTableScan" value="true" />
+	</bean>
+	
+	
+</beans>

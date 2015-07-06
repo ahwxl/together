@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:osgi="http://www.springframework.org/schema/osgi"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd"
+	default-autowire="byName">
+
+	<bean id="finextSequenceDataSource" class="com.taobao.tddl.client.jdbc.TDataSource"
+		init-method="init">
+		<property name="dataSourcePool">
+			<map>
+				<entry key="finext00" value-ref="finextDataSource00" />
+				<entry key="finext01" value-ref="finextDataSource01" />
+			</map>
+		</property>
+		<!-- <property name="keyWeightConfig">
+			<map>
+				<entry key="group_0"
+					value="finext00:10,finext01:10" />
+			</map>
+		</property> -->
+		<property name="useLocalConfig" value="true" />
+		<property name="appName" value="test" />
+		<property name="appRuleFile" value="classpath:tddl/finext-tddl-apprule.xml" />
+	</bean>
+
+	<bean id="finextDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="username" value="root" />
+		<property name="password" value="123456" />
+	</bean>
+
+	<bean id="finextDataSource00" parent="finextDataSource">
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/user01" />
+	</bean>
+
+	<bean id="finextDataSource01" parent="finextDataSource">
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/user02" />
+	</bean>
+	
+	<bean id="finextTransactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+			<ref bean="finextSequenceDataSource" />
+		</property>
+	</bean>
+
+	<bean id="finextTransactionTemplate"
+		class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager">
+			<ref bean="finextTransactionManager" />
+		</property>
+	</bean>
+	
+	<bean id="jdbcTemplateTest" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="finextSequenceDataSource" />
+    </bean>
+
+
+</beans>
+
