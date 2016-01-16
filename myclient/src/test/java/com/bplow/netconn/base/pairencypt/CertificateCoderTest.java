@@ -2,6 +2,12 @@ package com.bplow.netconn.base.pairencypt;
 
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+
+import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
 import com.bplow.netconn.base.pairencrypt.CertificateCoder;
@@ -21,10 +27,17 @@ public class CertificateCoderTest {
 	public void test() throws Exception {
 		System.err.println("公钥加密——私钥解密");
 		String inputStr = "中国人ab民解放军￥%@￥@#￥￥￥";
-		byte[] data = inputStr.getBytes();
+		InputStream ist = this.getClass().getResourceAsStream("");
+		//byte[] data = inputStr.getBytes();
+		byte[] data = IOUtils.toByteArray(ist);
 
 		byte[] encrypt = CertificateCoder.encryptByPublicKey(data,
 				certificatePath);
+		
+		InputStream in = new ByteArrayInputStream(encrypt);
+		File f = new File("D:/www.tar");
+		if(!f.exists())f.createNewFile();
+		IOUtils.copy(in, new FileOutputStream(f));
 
 		byte[] decrypt = CertificateCoder.decryptByPrivateKey(encrypt,
 				keyStorePath, alias, password);

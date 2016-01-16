@@ -1,2 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+
+<xml>
 <map name="sevice">abc</map>
+        <map name="actionMethod">POST</map>
+        <map name="merchantNo">104110082201125</map>
+        <map name="mRefundSeq">2016011351725474376</map>
+        <map name="curCode">001</map>
+        <map name="refundAmount">100.00</map>
+        <map name="orderNo">2016010935164334372</map>
+        <map name="actionUrl">https://ebspay.boc.cn/PGWPortal/RefundOrder.do</map>
+        <map name="signData"></map>
+</xml>

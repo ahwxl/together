@@ -20,7 +20,9 @@ public class QueryControler {
 
 	
 	@RequestMapping(value="/query",method = RequestMethod.GET)
-	public String doQuery(Map<String, Object> model){
+	public String doQuery(Map<String, Object> model,HttpServletRequest request, HttpServletResponse respose) throws IOException{
+		
+		InputStream in = request.getInputStream();
 		
 		
 		

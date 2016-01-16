@@ -1,7 +1,7 @@
 (function(a, e, b) {
-    b.LazyLoad().js("http://js.miaozhen.com/mz_ad_serving.js",
+    b.LazyLoad().js("http://js.xtgreat.com/mz_ad_serving.js",
     function() {
-        b.rmLazyScript("http://js.miaozhen.com/mz_ad_serving.js")
+        b.rmLazyScript("http://js.xtgreat.com/mz_ad_serving.js")
     });
     b.MZADX = {
         invoke: function(c, d) {

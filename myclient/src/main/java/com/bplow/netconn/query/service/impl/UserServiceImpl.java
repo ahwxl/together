@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private TableDao tableDao;
 	
-	@Autowired
+	//@Autowired
 	private CacheManager cacheManager;
 	
 	

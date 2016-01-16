@@ -3,13 +3,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>myclient</title>
-<script type="text/javascript" src="SC/start"></script>
 </head>
 <body>
-你好！！！<br />sdfgfdfsdsfadasfdsd
-<div id="AD_Sellbuyads"> 
-   <script src="http://track.sellbuyads.cn/api/basejs?id=cnd2_cnd3&ext=7577|1387" type="text/javascript"></script> 
-</div>
+你好！！！<br />
+<script type="text/javascript">
+var obj ={
+invoke :function (a){alert(a)},
+show:function(){alert('aaa')}
+}
+
+function execute(o){
+
+o.invoke.call(o,'abc','');
+}
+
+//if(1==1)alert(1),alert(2);
+
+//execute(obj);
+obj['show']();
+</script>
 
 </body>
 </html>

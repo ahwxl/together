@@ -27,6 +27,17 @@
 		<servlet-name>myClient</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+	    <servlet-name>myservlet</servlet-name>
+		<servlet-class>com.bplow.netconn.base.servlet.MyServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>myservlet</servlet-name>
+		<url-pattern>/iservice/</url-pattern>
+	</servlet-mapping>
 
 
     <!-- Dandelion filter definition and mapping -->

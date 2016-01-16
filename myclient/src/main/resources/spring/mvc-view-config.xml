@@ -55,7 +55,7 @@
         <!-- Object-XML mapping declared using annotations inside 'Vets' -->
         <!-- <oxm:class-to-be-bound name="org.springframework.samples.petclinic.model.Vets"/>
     </oxm:jaxb2-marshaller> -->
-    <!-- velocity 配置 
+    <!-- velocity 配置 -->
 	<bean id="velocityConfig"
 		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="resourceLoaderPath" value="/WEB-INF/view/" />
@@ -78,16 +78,8 @@
 		<property name="contentType" value="text/html;charset=UTF-8"></property>
 		<property name="order" value="0" />
 	</bean>
-
-	<bean id="freemarkerViewResolver"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-		<property name="contentType" value="text/html; charset=UTF-8" />
-		<property name="exposeRequestAttributes" value="false" />
-		<property name="exposeSessionAttributes" value="false" />
-		<property name="exposeSpringMacroHelpers" value="true" />
-	</bean>
-	-->
 	
+	<!-- freemarker 配置 
 	<bean id = "viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name = "cache" value="true" />
 		<property name = "prefix" value="" />
@@ -115,10 +107,9 @@
     <prop key="time_format">HH:mm:ss</prop>
     <prop key="number_format">0.######</prop>
     <prop key="whitespace_stripping">true</prop>
-    <!-- <prop key="auto_import">/WEB-INF/ftl/pony/index.ftl as p,/WEB-INF/ftl/spring.ftl as s</prop> -->
    </props>
   </property>
  </bean>
-	
+	-->
 
 </beans>

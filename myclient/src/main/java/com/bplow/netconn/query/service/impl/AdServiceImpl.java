@@ -27,7 +27,7 @@ public class AdServiceImpl implements Adservice{
 	@Autowired
 	private AdDao adDao;
 	
-	@Autowired
+	//@Autowired
 	private CacheManager cacheManager;
 	
 	@Autowired
@@ -55,7 +55,7 @@ public class AdServiceImpl implements Adservice{
 	@Override
 	public String executeMethod(ReqForm reqForm,OutputStream os) {
 		String exeNum = reqForm.getC();
-		String cnidx  = reqForm.getCnindx();
+		String cnidx  = reqForm.getCnidx();
 		String ext    = reqForm.getExt();
 		String adId   = null;
 		String adName = "";
@@ -72,7 +72,7 @@ public class AdServiceImpl implements Adservice{
 		
 		if("1".equals(cnidx)){
 			adName = "MZADX";
-			property = "{'l':'7577'}";
+			property = "{'l':'9556'}";//  7577
 		}else{
 			adName = "YOUDAO";
 			property = "{'slotid':'1387'}";

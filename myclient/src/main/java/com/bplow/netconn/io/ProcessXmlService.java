@@ -25,21 +25,22 @@ public class ProcessXmlService {
 	
 	public void readXml() throws IOException{
 		SAXReader reader = new SAXReader();
-		InputStream in = this.getClass().getResourceAsStream("/requestparam/req.xml");
+		InputStream in = this.getClass().getResourceAsStream("/requestparam/map.xml");
 		try {
 			Document document = reader.read(in);
-			Node node = document.selectSingleNode( "/Cartoon/Message/node()[1]/@id" );
+			//Node node = document.selectSingleNode( "/Cartoon/Message/node()[1]/@id" );
 			
 			//logger.info(node.getText());
 			
 			
 			//XPath xpathSelector = DocumentHelper.createXPath("/map[@name='sevice']/text()");
 			xpath ="/Cartoon/Message/node()[1]/@id";
+			xpath ="/xml/map[@name='refundAmount']/text()";
 			XPath xpathSelector = DocumentHelper.createXPath(xpath);
 		    //List results = xpathSelector.selectNodes(document);
 		    Node node2 = xpathSelector.selectSingleNode(document);
 		    
-		    logger.info(node2.getText());
+		    logger.info("订单号:===>"+node2.getText());
 		    
 		    OutputFormat outformat = OutputFormat.createPrettyPrint();
 		    outformat.setEncoding("UTF-8");

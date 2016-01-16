@@ -5,7 +5,7 @@ public class ReqForm {
 	private String id;
 	private String c;
 	private String ext;
-	private String cnindx;
+	private String cnidx;
 	
 	
 	public ReqForm() {
@@ -23,11 +23,11 @@ public class ReqForm {
 	public void setExt(String ext) {
 		this.ext = ext;
 	}
-	public String getCnindx() {
-		return cnindx;
+	public String getCnidx() {
+		return cnidx;
 	}
-	public void setCnindx(String cnindx) {
-		this.cnindx = cnindx;
+	public void setCnidx(String cnidx) {
+		this.cnidx = cnidx;
 	}
 	public String getC() {
 		return c;
@@ -37,7 +37,7 @@ public class ReqForm {
 	}
 	@Override
 	public String toString() {
-		return "ReqForm [id=" + id + ", ext=" + ext + ", cnindx=" + cnindx
+		return "ReqForm [id=" + id + ", ext=" + ext + ", cnindx=" + cnidx
 				+ "]";
 	}
 	
