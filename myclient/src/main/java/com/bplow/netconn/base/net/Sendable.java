@@ -46,7 +46,7 @@ import java.io.*;
  * @author Brad R. Wetmore
  * @version 1.2, 04/07/26
  */
-interface Sendable {
+public interface Sendable {
 
     void prepare() throws IOException;
 

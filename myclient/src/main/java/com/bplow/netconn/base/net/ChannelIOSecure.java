@@ -450,7 +450,7 @@ needIO:
     /*
      * Try to write out as much as possible from the src buffer.
      */
-    int write(ByteBuffer src) throws IOException {
+    public int write(ByteBuffer src) throws IOException {
 
 	if (!initialHSComplete) {
 	    throw new IllegalStateException();

@@ -1,6 +1,7 @@
 package com.bplow.netconn.base.net;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -10,7 +11,7 @@ public class Client {
 
 	public static void main(String[] args) throws Exception {
 
-		Socket socket = new Socket("10.244.37.201", 6782);
+		Socket socket = new Socket("10.63.73.7", 7777);
 
 		// 向本机的4700端口发出客户请求
 
@@ -20,6 +21,7 @@ public class Client {
 		// 由系统标准输入设备构造BufferedReader对象
 
 		PrintWriter os = new PrintWriter(socket.getOutputStream());
+		DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
 		// 由Socket对象得到输出流，并构造PrintWriter对象
 
@@ -36,7 +38,10 @@ public class Client {
 
 			// 若从标准输入读入的字符串为 "bye"则停止循环
 
-			os.println(readline);
+			//os.println(readline);
+			//os.print(readline);
+			byte[] resposeByte = null;
+			out.write(resposeByte);
 
 			// 将从系统标准输入读入的字符串输出到Server
 

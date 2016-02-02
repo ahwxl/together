@@ -52,7 +52,7 @@ import java.nio.channels.*;
  * @author Mark Reinhold
  * @version 1.2, 04/07/26
  */
-class ChannelIO {
+public class ChannelIO {
 
 	protected SocketChannel sc;
 
@@ -135,7 +135,7 @@ class ChannelIO {
 	/*
 	 * Write the src buffer into the socket channel.
 	 */
-	int write(ByteBuffer src) throws IOException {
+	public int write(ByteBuffer src) throws IOException {
 		return sc.write(src);
 	}
 

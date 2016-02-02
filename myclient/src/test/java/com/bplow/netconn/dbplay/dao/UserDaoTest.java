@@ -11,7 +11,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import com.bplow.netconn.dbplay.dao.UserDao;
 
 
-@ContextConfiguration(locations = { "/applicationContext.xml","/test-datasource.xml","/applicationContext-myclient.xml" })
+@ContextConfiguration(locations = { "/applicationContext.xml","/zdal_ds.xml","/applicationContext-myclient.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
 public class UserDaoTest {
@@ -22,7 +22,7 @@ public class UserDaoTest {
 	
 	@Test
 	public void inserUserTest(){
-		String sql = " insert into user(id,name) values(3,'张三')";
+		String sql = " insert into user(id,name) values(2,'张三')";
 		userDao.inserUser(sql);
 	}
 

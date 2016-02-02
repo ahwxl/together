@@ -40,6 +40,8 @@ import java.io.*;
 import java.nio.*;
 import java.nio.channels.*;
 
+import com.bplow.netconn.base.net.data.ReplyTxt;
+
 /**
  * Primary driver class used by non-blocking Servers to receive, prepare, send,
  * and shutdown requests.
@@ -87,16 +89,23 @@ class RequestHandler implements Handler {
 		if (!cio.doHandshake(sk)) {
 			return false;
 		}
-        if(cio.read() > 0){
+        /*if(cio.read() > 0){
 			rbb = cio.getReadBuf();
+			System.out.println("接受客户端字节数："+rbb.position());
 			return (requestReceived = true);
+        }*/
+        while(cio.read() > 0){
+        	
         }
+        rbb = cio.getReadBuf();
+        System.out.println("接受客户端字节数："+rbb.position());
+		return (requestReceived = true);
 		
 		/*if ((cio.read() < 0) || Request.isComplete(cio.getReadBuf())) {
 			rbb = cio.getReadBuf();
 			return (requestReceived = true);
 		}*/
-		return false;
+		//return false;
 	}
 
 	// When parse is successfull, saves request and returns true
@@ -133,8 +142,10 @@ class RequestHandler implements Handler {
 				parse();
 				/*if (parse())
 					build();*/
-				Reply8583 rep = new Reply8583();
-				rep.setOutOrderNo(request.outOrderNo);
+				/*Reply8583 rep = new Reply8583();
+				rep.setOutOrderNo(request.outOrderNo);*/
+				ReplyTxt rep = new ReplyTxt();
+				
 				rep.prepare();
 				rep.send(cio);
 				cio.dataFlush();
