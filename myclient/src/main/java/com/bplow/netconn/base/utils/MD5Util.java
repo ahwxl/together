@@ -11,9 +11,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.alibaba.common.logging.Logger;
-import com.alibaba.common.logging.LoggerFactory;
 
 /**
  * MD5文件摘要 适用于大文件。

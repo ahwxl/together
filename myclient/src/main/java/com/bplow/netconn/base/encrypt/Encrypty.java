@@ -4,9 +4,9 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.common.lang.StringUtil;
 
 @Component
 public class Encrypty {
@@ -112,7 +112,7 @@ public class Encrypty {
 
             byte[] deskeys = new byte[24];
             //次处密钥包含了密钥版本,需要解析,格式:key^keyVersion
-            String[] values = StringUtil.split(keyPwd, SPLITER);
+            String[] values = StringUtils.split(keyPwd, SPLITER);
 
             byte[] keyBytes = values[0].getBytes("ISO-8859-1");
 

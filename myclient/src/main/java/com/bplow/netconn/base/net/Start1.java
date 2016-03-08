@@ -18,6 +18,7 @@ public class Start1 extends Server{
 	
 	public static void main(String[] args) {
 		try {
+			//10.63.73.7
 			//Start1 start1 = new Start1(36010,1024,false);
 //			Start1 start1 = new Start1(7777,1024,false);
 			Start1 start1 = new Start1(466,1024,false);

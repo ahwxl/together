@@ -1,5 +1,6 @@
 package com.bplow.netconn.base.servlet;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -24,7 +25,6 @@ import org.dom4j.Element;
 import org.dom4j.io.DOMReader;
 import org.dom4j.io.SAXReader;
 
-import com.alibaba.common.lang.io.ByteArrayInputStream;
 
 /**
  * 测试使用

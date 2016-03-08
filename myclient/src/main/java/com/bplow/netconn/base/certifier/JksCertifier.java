@@ -1,6 +1,5 @@
 package com.bplow.netconn.base.certifier;
 
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.security.cert.Certificate;
 import java.security.KeyStore;
@@ -15,7 +14,6 @@ import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Service;
 import sun.misc.BASE64Decoder;
 
-import com.alibaba.common.logging.spi.LoggerUtil;
 @Service
 public class JksCertifier {
 	/** 私钥keyStore */

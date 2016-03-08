@@ -9,4 +9,8 @@
 
 	<!-- optional -->
 	<import resource="cache/applicationContext-ehcache.xml" />
+	
+	<import resource="spring/groovy/groovy-context.xml" />
+	
+	<import resource="spring/ws/applicationContext-soap-server.xml" />
 </beans>

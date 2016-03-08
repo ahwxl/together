@@ -10,10 +10,9 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang.ArrayUtils;
 
-import com.iwallet.biz.common.util.UniqID;
 
 
-public class StringUtil extends com.alibaba.common.lang.StringUtil {
+public class StringUtil  {
 
     /**  判断字符串是否为16进制数字 */
     public static final Pattern HAX_PATTERN             = Pattern.compile("^[0-9a-fA-F]+$");
@@ -47,7 +46,7 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
      *
      * @return 扩展后的字符串，如果字符串为<code>null</code>，则返回<code>null</code>
      */
-    public static String alignLefts(String str, int size, String padStr) {
+   /* public static String alignLefts(String str, int size, String padStr) {
         if (str == null) {
             return null;
         }
@@ -77,7 +76,7 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         }
     }
 
-    /**
+    *//**
      * 扩展并左对齐字符串，用指定字符串填充右边。使用特定编码集
      * 新增对中文字符串的支持，注意方法名称为<code>alignLeft<b>s</b></code>
      * 
@@ -99,7 +98,7 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
      * @param padStr 填充字符串
      *
      * @return 扩展后的字符串，如果字符串为<code>null</code>，则返回<code>null</code>
-     */
+     *//*
     public static String alignLeftsByCharSet(String str, int size, String padStr, String charSet) {
         if (str == null) {
             return null;
@@ -139,7 +138,7 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         }
     }
 
-    /**
+    *//**
      * <p>
      * 按指定的字节长度截取指定字符串，保留长度不能小于0。本方法对字符串解码采用GBK。
      * <li>如果保留长度超过指定字符串长度，则右补空格至指定长度
@@ -160,7 +159,7 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
      * @param size
      * @param padStr
      * @return
-     */
+     *//*
     public static String alignLeftFixLength(String str, int size, String padStr) {
 
         // 空字符串处理
@@ -171,14 +170,14 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         return alignLefts(substringFixLength(str, size), size, padStr);
     }
 
-    /**
+    *//**
      * <code>substrings</code>设计不太友好，需要判断截取的长度是否超过字符串的长度，否则会数组越界异常<br>
      * 因此重新封装字符串截取，支持中文字符串的处理，避免截取半个字符串
      * 
      * @param str
      * @param size
      * @return
-     */
+     *//*
     public static String substringFixLength(String str, int size) {
 
         // 字符串没有超长，不需要截取处理
@@ -197,7 +196,7 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         return substrings(str, 0, size);
     }
 
-    /**
+    *//**
      * 扩展并右对齐字符串，用指定字符串填充左边。
      * 新增对中文字符串的支持，注意方法名称为<code>alignRight<b>s</b></code>
      * 
@@ -219,7 +218,7 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
      * @param padStr 填充字符串
      *
      * @return 扩展后的字符串，如果字符串为<code>null</code>，则返回<code>null</code>
-     */
+     *//*
     public static String alignRights(String str, int size, String padStr) {
         if (str == null) {
             return null;
@@ -249,7 +248,7 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         }
     }
 
-    /**
+    *//**
      * 扩展并右对齐字符串，用指定字符串填充左边。使用特定编码集
      * 新增对中文字符串的支持，注意方法名称为<code>alignRight<b>s</b></code>
      * 
@@ -271,7 +270,7 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
      * @param padStr 填充字符串
      *
      * @return 扩展后的字符串，如果字符串为<code>null</code>，则返回<code>null</code>
-     */
+     *//*
     public static String alignRightsByCharSet(String str, int size, String padStr, String charSet) {
         if (str == null) {
             return null;
@@ -310,7 +309,7 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         }
     }
 
-    /**
+    *//**
      * 取指定字符串的子串，新增对中文字符串的支持
      * 注意方法名称为<code>substring<b>s</b></code>   
      *
@@ -319,7 +318,7 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
      * @param end 结束索引（不含），如果为负数，表示从尾部计算
      *
      * @return 子串，如果原始串为<code>null</code>，则返回<code>null</code>
-     */
+     *//*
     public static String substrings(String str, int start, int end) {
         if (str == null) {
             return null;
@@ -332,14 +331,14 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         return new String(dest);
     }
 
-    /**
+    *//**
      * 根据长度<code>length</code>把字符串切成两段，保存数组<br>
      * 确保中文不要被切成两半
      * 
      * @param message
      * @param length
      * @return
-     */
+     *//*
     public static String[] cutString(String message, int length) {
         String normal = StringUtil.substrings(message, 0, length);
         if (isContainChinese(message, length)) {
@@ -349,13 +348,13 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         return new String[] { normal, StringUtil.substringAfter(message, normal) };
     }
 
-    /**
+    *//**
      * 字符串是否包含中文
      * 
      * @param message
      * @param length
      * @return
-     */
+     *//*
     public static boolean isContainChinese(String message) {
         char[] chars = message.toCharArray();
         byte[] bytes;
@@ -367,20 +366,20 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         return (chars.length != bytes.length);
     }
 
-    /**
+    *//**
      * 字符串起始长度<code>length</code>的字符串是否包含中文
      * 
      * @param message
      * @param length
      * @return
-     */
+     *//*
     public static boolean isContainChinese(String message, int length) {
         char[] chars = StringUtil.substrings(message, 0, length).toCharArray();
         char[] charsPlus = StringUtil.substrings(message, 0, length + 1).toCharArray();
         return ArrayUtils.isSameLength(chars, charsPlus);
     }
 
-    /**
+    *//**
      * 在字符串中查找指定字符集合中的字符，并返回第一个匹配的起始索引。 如果字符串为<code>null</code>，则返回<code>-1</code>。
      * 如果字符集合为<code>null</code>或空，也返回<code>-1</code>。
      * <pre>
@@ -398,7 +397,7 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
      * @param startPos 开始搜索的索引值，如果小于0，则看作0
      *
      * @return 第一个匹配的索引值。如果字符串为<code>null</code>或未找到，则返回<code>-1</code>
-     */
+     *//*
     public static int indexOfAny(String str, char[] searchChars, int startPos) {
         if ((str == null) || (str.length() == 0) || (searchChars == null)
             || (searchChars.length == 0)) {
@@ -418,11 +417,11 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         return -1;
     }
 
-    /**
+    *//**
      * 过滤要输出到json的字符串，将'和"进行转义输出
      * @param input
      * @return
-     */
+     *//*
     public static String filterJsonString(String input) {
         if (input == null) {
             return EMPTY_STRING;
@@ -448,11 +447,11 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         return result.toString();
     }
 
-    /**
+    *//**
      * 过滤要输出到xml的字符串，将<,>,&,"进行转义输出
      * @param string
      * @return
-     */
+     *//*
     public static String filterXMLString(String input) {
         if (input == null) {
             return EMPTY_STRING;
@@ -486,7 +485,7 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         return result.toString();
     }
 
-    /**
+    *//**
      * 根据url获取系统名称
      * 如果url里面包括系统名就返回，否则直接返回域名
      * 如http://bops.alipay.com 返回bops
@@ -494,7 +493,7 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
      * @param url
      * @return
      * @throws MalformedURLException
-     */
+     *//*
     public static String getSystemNameByURL(String url) throws MalformedURLException {
         URL netURL = new URL(url);
         String domain = netURL.getHost();
@@ -509,13 +508,13 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         }
     }
 
-    /**
+    *//**
      * 在字符串的左边填充长度信息，根据长度的长度定义，采用左补零右对齐的方式
      * 
      * @param input
      * @param lengthLength
      * @return
-     */
+     *//*
     public static String fillLength(String input, int lengthLength) {
         if (isBlank(input)) {
             return StringUtil.alignRights(EMPTY_STRING, lengthLength, "0");
@@ -526,22 +525,22 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         return filledLength + input;
     }
 
-    /**
+    *//**
      * 获取uniqueID哈希值班
      * 
      * @return
-     */
+     *//*
     public static String getUIDHash() {
         return UniqID.getInstance().getUniqIDHash();
     }
 
-    /**
+    *//**
      * 获取指定字符串按GBK编码转换成的byte长度
      * 由于String.getByte方法依赖于操作系统编码，处理中文字符串时建议用此方法
      * 
      * @param data
      * @return
-     */
+     *//*
     public static byte[] getGBKByte(String data) {
         if (data == null) {
             return new byte[0];
@@ -553,24 +552,24 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         }
     }
 
-    /**
+    *//**
      * 获取指定字符串按GBK编码转换成byte的长度
      * 由于String.getByte方法依赖于操作系统编码，处理中文字符串时建议用此方法
      * 
      * @param data
      * @return
-     */
+     *//*
     public static int getGBKByteLength(String data) {
         return getGBKByte(data).length;
     }
 
-    /**
+    *//**
      * 生成一定长度的序列号
      * 
      * @param length
      * @param padding
      * @return
-     */
+     *//*
     public static String genSerialNo(int length, String padding) {
         String nanoTime = System.nanoTime() + "";
         if (nanoTime.length() >= length) {
@@ -581,13 +580,13 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         return nanoTime;
     }
 
-    /**
+    *//**
      * 将数字格式化到固定长度
      * 
      * @param input
      * @param fixLength
      * @return
-     */
+     *//*
     public static String formatNumberToFixedLength(String input, int fixLength) {
         if (input.length() <= fixLength) {
             // 未到指定长度，左补0
@@ -598,11 +597,11 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         }
     }
 
-    /**
+    *//**
      * 判断字符串是否为16进制数字
      * @param input
      * @return
-     */
+     *//*
     public static boolean isHexString(String input) {
         if (input == null) {
             return false;
@@ -614,42 +613,42 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
         return HAX_PATTERN.matcher(input).matches();
     }
 
-    /**
+    *//**
      * 将16进制数字转换为10进制
      * @param input
      * @return
-     */
-    /*public static String convertHexToDecimal(String input) {
+     *//*
+    public static String convertHexToDecimal(String input) {
         if (isHexString(input)) {
             return String.valueOf(new BigInteger(input, ByteConstant.HEX));
         }
         return input;
-    }*/
+    }
 
-    /**
+    *//**
      * 获取换行符（\n），供vm中使用，屏蔽了操作系统的差异
      * 
      * @return
-     */
-  /*  public static String getNewLine() {
+     *//*
+    public static String getNewLine() {
         return String.valueOf(LoggerUtil.ENTERSTR);
-    }*/
+    }
 
-    /**
+    *//**
      * 将字符串转换为16进制字符串输出
      * @param input
      * @return
-     */
-    /*public static String getHexString(String input) {
+     *//*
+    public static String getHexString(String input) {
         return ISOUtil.hexString(StringUtil.getGBKByte(input));
-    }*/
+    }
 
-    /**
+    *//**
      * 将byte[]按指定编码转换为字符串，供velocity中使用
      * @param bytes
      * @param charsetName
      * @return
-     */
+     *//*
     public static String getNewString(byte[] bytes, String charsetName) {
         try {
             return new String(bytes, charsetName);
@@ -661,5 +660,5 @@ public class StringUtil extends com.alibaba.common.lang.StringUtil {
     public static void main(String[] args) {
     	System.out.println(StringUtil.substringFixLength("我12在人民广场",5));
 	}
-
+*/
 }
