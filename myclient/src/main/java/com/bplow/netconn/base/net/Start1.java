@@ -21,7 +21,7 @@ public class Start1 extends Server{
 			//10.63.73.7
 			//Start1 start1 = new Start1(36010,1024,false);
 //			Start1 start1 = new Start1(7777,1024,false);
-			Start1 start1 = new Start1(466,1024,false);
+			Start1 start1 = new Start1(1688,1024,false);
 			start1.runServer();
 			Thread.currentThread().sleep(10000);
 		} catch (Exception e) {                                                                

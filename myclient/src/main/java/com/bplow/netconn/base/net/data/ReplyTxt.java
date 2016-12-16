@@ -15,7 +15,7 @@ public class ReplyTxt implements Sendable{
 	
 	@Override
 	public void prepare() throws IOException {
-		InputStream in = this.getClass().getResourceAsStream("/jks/spabank-query1.txt");
+		InputStream in = this.getClass().getResourceAsStream("/jks/paymentResponse.xml");
 		byte[] respdata = IOUtils.toByteArray(in);
 		resByte = ByteBuffer.allocate(respdata.length);
 		resByte.put(respdata);

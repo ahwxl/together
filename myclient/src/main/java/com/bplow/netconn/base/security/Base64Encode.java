@@ -64,8 +64,8 @@ public class Base64Encode {
 	}
 	
 	public String decodeStrNoToFile(String str)throws IOException{
-		byte[] rt = Base64.decodeBase64(str.getBytes("GBK"));
-		String revalue = new String(rt,"GBK");
+		byte[] rt = Base64.decodeBase64(str.getBytes("UTF-8"));
+		String revalue = new String(rt,"UTF-8");
 		log.info("decode:[{}]",revalue);
 		return revalue;
 	}

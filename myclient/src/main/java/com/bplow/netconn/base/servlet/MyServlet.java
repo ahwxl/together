@@ -44,8 +44,10 @@ public class MyServlet extends HttpServlet{
 		OutputStream out = response.getOutputStream();
 		
 		String str = IOUtils.toString(in);
+		System.out.println(str.length());
+		doProcess(str,response);
 		
-		Map<String, String> map = new HashMap<String, String>();
+		/*Map<String, String> map = new HashMap<String, String>();
 	    Enumeration headerNames = request.getHeaderNames();
 	    while (headerNames.hasMoreElements()) {
 	        String key = (String) headerNames.nextElement();
@@ -56,7 +58,7 @@ public class MyServlet extends HttpServlet{
 		
 		String msg = request.getParameter("message");
 		String iputmsg =new String( Base64.decodeBase64(msg));
-		/*处理请求报文*/
+		处理请求报文
         Map<String, String[]> params = request.getParameterMap();
         String queryString = "";
         String reqxmlbase64 = null;
@@ -98,7 +100,7 @@ public class MyServlet extends HttpServlet{
 		}
         
         
-        /*返回报文处理*/
+        返回报文处理
         PrintWriter writer = response.getWriter();
         StringBuffer sb =new StringBuffer();
         InputStream inres = this.getClass().getResourceAsStream("/requestparam/resPay.xml");
@@ -109,7 +111,7 @@ public class MyServlet extends HttpServlet{
         System.out.println(sb.toString());
         writer.println(sb.toString());
         writer.flush();
-        writer.close();
+        writer.close();*/
 	}
 	
 	
@@ -121,6 +123,15 @@ public class MyServlet extends HttpServlet{
 		String str = IOUtils.toString(in);
 		System.out.println(str);
 	}
+	
+	public void doProcess(String str, HttpServletResponse response) throws IOException{
+	    System.out.println(str);
+	    PrintWriter writer = response.getWriter();
+	    writer.write( str);
+	    writer.flush();
+        writer.close();
+	}
+	
 	
 	
 
