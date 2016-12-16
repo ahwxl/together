@@ -19,6 +19,9 @@
 	<ehcache.version>2.6.9</ehcache.version>
 	<shiro.version>1.2.3</shiro.version>
 	<freemarker.version>2.3.21</freemarker.version>
+	<cxf.version>2.7.11</cxf.version>
+	<zdal.version>3.2.6</zdal.version>
+	<TDDL.version>3.0.1.6</TDDL.version>
   </properties>
 
   <dependencies>
@@ -152,7 +155,7 @@
 	    <version>1.3.2</version>
 	</dependency>
 	
-	<dependency>
+    <dependency>
 	    <groupId>net.sf.json-lib</groupId>
 	    <artifactId>json-lib</artifactId>
 	    <version>2.4</version>
@@ -238,7 +241,7 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.12</version>
-      <scope>test</scope>
+      <scope>compile</scope>
     </dependency>
     
     <!-- <dependency>
@@ -275,7 +278,300 @@
 		<artifactId>freemarker</artifactId>
 		<version>${freemarker.version}</version>
 	</dependency>
-    
+	<!-- <dependency>
+		<groupId>httpclient</groupId>
+		<artifactId>httpclient</artifactId>
+		<version>4.2.3</version>
+	</dependency> -->
+	
+	<!-- 
+	<dependency>
+		<groupId>com.taobao.tddl</groupId>
+		<artifactId>tddl-client</artifactId>
+		<version>3.0.1.6</version>
+	</dependency>
+		<dependency>
+			<groupId>com.taobao.tddl</groupId>
+			<artifactId>tddl-rule</artifactId>
+			<version>3.0.1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.taobao.tddl</groupId>
+			<artifactId>tddl-cache</artifactId>
+			<version>3.0.1.6</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.taobao.tddl</groupId>
+			<artifactId>tddl-common</artifactId>
+			<version>3.0.1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.taobao.tddl</groupId>
+			<artifactId>tddl-parser</artifactId>
+			<version>3.0.1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.taobao.tddl</groupId>
+			<artifactId>tddl-sample</artifactId>
+			<version>2.3.6.8</version>
+		</dependency>
+		<dependency>
+			<groupId>com.taobao.tddl</groupId>
+			<artifactId>tddl-sequence</artifactId>
+			<version>3.5.1</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.taobao.pushit</groupId>
+		  <artifactId>pushit</artifactId>
+		  <version>1.0.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.taobao.diamond</groupId>
+		  <artifactId>diamond-client</artifactId>
+		  <version>3.0.4</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.taobao.diamond</groupId>
+		  <artifactId>diamond-utils</artifactId>
+		  <version>3.1.2</version>
+		</dependency>
+ 		<dependency>
+		  <groupId>com.taobao.eagleeye</groupId>
+		  <artifactId>eagleeye-core</artifactId>
+		  <version>1.2.4</version>
+		</dependency>
+		<dependency>
+		    <groupId>jboss</groupId>
+		    <artifactId>jboss-common-client</artifactId>
+		    <version>3.2.3</version>
+		</dependency>-->
+		<!-- <dependency>
+			<groupId>com.alipay.financecomponents</groupId>
+			<artifactId>financecomponents-process-ctrl</artifactId>
+			<version>1.0.1.20140416_influx</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alipay.financecomponents</groupId>
+			<artifactId>financecomponents-common-message</artifactId>
+			<version>1.0.0.20121115</version>
+		</dependency> 
+		 <dependency>
+			<groupId>com.alipay.sofa.service</groupId>
+			<artifactId>sofa-service-api</artifactId>
+			<version>3.2.8.0</version>
+		</dependency>
+		-->
+		<!-- 
+		<dependency>
+			<groupId>com.alibaba.toolkit.common</groupId>
+			<artifactId>toolkit-common-logging</artifactId>
+			<version>1.0</version>
+		</dependency>-->
+		
+		<!--<dependency>
+			<groupId>com.alipay.iwallet</groupId>
+			<artifactId>iwallet-biz-common</artifactId>
+			<version>1.5.0.20071223</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.alipay.finnet</groupId>
+		  <artifactId>finnet-service-facade</artifactId>
+		  <version>1.0.20151118</version>
+		</dependency>
+		 <dependency>
+		  <groupId>finsupport-component-common-lang</groupId>
+		  <artifactId>finsupport-component-common-lang</artifactId>
+		  <version>1.0.20140505</version>
+		</dependency> 
+		<dependency>
+		  <groupId>com.alipay.test</groupId>
+		  <artifactId>aqc-common-framework</artifactId>
+		  <version>2.2.20-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.alipay.bipgw</groupId>
+		  <artifactId>bipgw-service-facade-common</artifactId>
+		  <version>1.0.0.20150716</version>
+		</dependency>-->
+		<!-- filebridge 
+		<dependency>
+			<groupId>com.alipay.filebridge</groupId>
+			<artifactId>filebridge-common-service-facade</artifactId>
+			<version>1.0.0.20140416</version>
+		</dependency>-->
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		    <version>2.7.3</version>
+		    <type>jar</type>
+		    <scope>compile</scope>
+		</dependency>
+		<!-- zdal 
+		<dependency>
+                <groupId>com.alipay.sofa.runtime</groupId>
+                <artifactId>sofa-runtime-test</artifactId>
+                <version>3.1.5.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alipay.sofa.runtime</groupId>
+                <artifactId>sofa-runtime-test-cloudengine</artifactId>
+                <version>${sofa.version}</version>
+            </dependency>
+		<dependency>
+			<groupId>com.alipay.cloudengine</groupId>
+			<artifactId>cloudengine-bom</artifactId>
+			<version>3.3.1.1</version>
+			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.alipay.zdal</groupId>
+			<artifactId>zdal-client</artifactId>
+			<version>${zdal.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.alipay.zdataconsole</groupId>
+					<artifactId>zdataconsole-common-service-facade</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.alipay.zdataconsole</groupId>
+			<artifactId>zdataconsole-common-service-facade</artifactId>
+			<version>1.0.2.20150723</version>
+		</dependency>-->
+
+		<!-- <dependency>
+			<groupId>com.alipay.zdal</groupId>
+			<artifactId>zdal-parser</artifactId>
+			<version>${zdal.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alipay.zdal</groupId>
+			<artifactId>zdal-rule</artifactId>
+			<version>${zdal.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alipay.zdal</groupId>
+			<artifactId>zdal-common</artifactId>
+			<version>${zdal.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alipay.zdal</groupId>
+			<artifactId>zdal-jdbc</artifactId>
+			<version>${zdal.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alipay.zdal</groupId>
+			<artifactId>zdal-datasource</artifactId>
+			<version>${zdal.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alipay.zdal</groupId>
+			<artifactId>zdal-sequence</artifactId>
+			<version>${zdal.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alipay.zdal</groupId>
+			<artifactId>zdal-oceanbase</artifactId>
+			<version>${zdal.version}</version>
+		</dependency> -->
+		<!-- <dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>16.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alipay.common</groupId>
+			<artifactId>ambush</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.alipay.financecomponents</groupId>
+		  <artifactId>financecomponents-dynamic-groovy</artifactId>
+		  <version>1.0.0.20140505</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.alipay.financecomponents</groupId>
+		  <artifactId>financecomponents-communication</artifactId>
+		  <version>1.0.0.20141211</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.alipay.financecomponents</groupId>
+		  <artifactId>financecomponents-sequence</artifactId>
+		  <version>1.0.0.20141015</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.alipay.financecomponents</groupId>
+		  <artifactId>financecomponents-task-desicion</artifactId>
+		  <version>1.0.0.20141217</version>
+		</dependency> -->
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>2.4.6</version>
+		</dependency>
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>4.1.0.CR7</version>
+		</dependency>
+		
+		<!-- SOAP begin -->
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-core</artifactId>
+				<version>${cxf.version}</version>
+				<exclusions>
+					<!-- use javax.mail.mail instead -->
+					<exclusion>
+						<groupId>org.apache.geronimo.specs</groupId>
+						<artifactId>geronimo-javamail_1.4_spec</artifactId>
+					</exclusion>
+					<!-- use javax.activation.activation instead -->
+					<exclusion>
+						<groupId>org.apache.geronimo.specs</groupId>
+						<artifactId>geronimo-activation_1.1_spec</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxws</artifactId>
+				<version>${cxf.version}</version>
+				<exclusions>
+					<!-- see above -->
+					<exclusion>
+						<groupId>org.apache.geronimo.specs</groupId>
+						<artifactId>geronimo-javamail_1.4_spec</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.apache.geronimo.specs</groupId>
+						<artifactId>geronimo-activation_1.1_spec</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-http</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<!-- SOAP end -->
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib-asm</artifactId>
+				<version>1.0</version>
+			</dependency>
   </dependencies>
   
   
@@ -384,6 +680,32 @@
 			</plugin>
 		</plugins>
   </build>
-  
-  
+  <!--  
+  <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>central_prod</id>
+                    <url>http://192.168.3.239:8081/nexus/content/repositories/thirdparty/</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>central</id>
+                    <url>http://192.168.3.239:8081/nexus/content/repositories/thirdparty/</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+  -->
 </project>
