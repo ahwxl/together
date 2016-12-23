@@ -58,6 +58,10 @@
 	<bean id="jdbcTemplateTest" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="finextSequenceDataSource" />
     </bean>
+    
+    <bean id="userDaoTest" class="com.bplow.netconn.dbplay.dao.impl.UserDaoImpl">
+         <property name="jdbcTemplateTest" ref="jdbcTemplateTest"></property>
+    </bean>
 
 
 </beans>

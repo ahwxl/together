@@ -22,6 +22,7 @@
 	<cxf.version>2.7.11</cxf.version>
 	<zdal.version>3.2.6</zdal.version>
 	<TDDL.version>3.0.1.6</TDDL.version>
+	<sharding-jdbc-core.version>1.4.0</sharding-jdbc-core.version>
   </properties>
 
   <dependencies>
@@ -571,6 +572,11 @@
 				<groupId>cglib</groupId>
 				<artifactId>cglib-asm</artifactId>
 				<version>1.0</version>
+			</dependency>
+			<dependency>
+			    <groupId>com.dangdang</groupId>
+			    <artifactId>sharding-jdbc-core</artifactId>
+			    <version>${sharding-jdbc-core.version}</version>
 			</dependency>
   </dependencies>
   

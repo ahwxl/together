@@ -48,9 +48,9 @@ public class DynamicBeanReaderImpl implements DynamicBeanReader,
 		String beanName = dynamicBean.getBeanName();
 		BeanDefinitionRegistry beanDefinitionRegistry = (DefaultListableBeanFactory) applicationContext.getBeanFactory();
 		if (applicationContext.containsBean(beanName)) {
-			beanDefinitionRegistry.removeBeanDefinition(beanName);
 			logger.warn("卸载bean【" + beanName + "】！");
 			destroyScriptsFromSpringContext(beanName);
+			//beanDefinitionRegistry.removeBeanDefinition(beanName);
 		}
 		
 		beanDefinitionReader.loadBeanDefinitions(new DynamicResource(

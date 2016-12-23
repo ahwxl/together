@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.bplow.netconn.base.dynamicBeanLoad.domain.GroovyDynamicBean;
+import com.bplow.netconn.base.groovy.RequestMessageParse;
 import com.bplow.netconn.base.groovy.beans.RequestParse;
 
 
@@ -24,8 +25,12 @@ public class DynamicBeanReaderImplTest extends AbstractJUnit4SpringContextTests{
 		
 		dynamicBeanReader.loadBean(groovyBean);
 		
-		RequestParse bean = (RequestParse)applicationContext.getBean("parse_scripte");
+		RequestMessageParse bean = (RequestMessageParse)applicationContext.getBean("parse_scripte");
 		bean.parseText("abc====");
+		
+		dynamicBeanReader.loadBean(groovyBean);
+		bean = (RequestMessageParse)applicationContext.getBean("parse_scripte");
+        bean.parseText("abc====");
 		
 	}
 

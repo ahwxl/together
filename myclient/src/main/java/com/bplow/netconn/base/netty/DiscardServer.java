@@ -39,6 +39,8 @@ public class DiscardServer {
 
             // Bind and start to accept incoming connections.
             ChannelFuture f = b.bind(port).sync(); // (7)
+            
+            System.out.println(DiscardServer.class.getName() + " started and listen on " + f.channel().localAddress());
 
             // Wait until the server socket is closed.
             // In this example, this does not happen, but you can do that to gracefully
@@ -55,7 +57,7 @@ public class DiscardServer {
         if (args.length > 0) {
             port = Integer.parseInt(args[0]);
         } else {
-            port = 8080;
+            port = 1688;
         }
         new DiscardServer(port).run();
     }

@@ -5,11 +5,15 @@ import java.sql.Timestamp;
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scripting.ScriptSource;
 import org.springframework.util.StringUtils;
 
 public class DatabaseScriptSource implements ScriptSource {
+    
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private final String scriptName;
 	private final JdbcTemplate jdbcTemplate;
@@ -26,10 +30,12 @@ public class DatabaseScriptSource implements ScriptSource {
 		synchronized (this.lastModifiedMonitor) {
 			this.lastKnownUpdate = retrieveLastModifiedTime();
 		}
-		return (String) jdbcTemplate
+		String sql = (String) jdbcTemplate
 				.queryForObject(
 						"select groovy_script from tb_parse_script where groovy_bean_name = ?",
 						new Object[] { this.scriptName }, String.class);
+		logger.info("查询数据库脚本:{}",sql);
+		return sql;
 	}
 
 	public boolean isModified() {
