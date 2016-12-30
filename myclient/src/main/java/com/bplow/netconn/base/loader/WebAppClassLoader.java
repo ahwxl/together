@@ -29,10 +29,13 @@ public class WebAppClassLoader extends URLClassLoader{
     public Class loadClass(String name)  {
         
         Class cl = null;
-        try {
-            cl = super.loadClass(name);
-        } catch (ClassNotFoundException e) {
-            logger.error("{}", e);
+        cl = super.findLoadedClass(name);
+        if(cl != null){
+            try {
+                cl = super.loadClass(name);
+            } catch (ClassNotFoundException e) {
+                logger.error("{}", e);
+            }
         }
         
         if(cl == null){
