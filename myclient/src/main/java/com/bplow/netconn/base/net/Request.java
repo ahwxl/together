@@ -36,10 +36,20 @@ package com.bplow.netconn.base.net;
  * nuclear facility.
  */
 
-import java.net.*;
-import java.nio.*;
-import java.nio.charset.*;
-import java.util.regex.*;
+import java.io.ByteArrayInputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+import java.util.Iterator;
+import java.util.regex.Pattern;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * An encapsulation of the request received.
@@ -51,7 +61,7 @@ import java.util.regex.*;
  * @version 1.2, 04/07/26
  */
 class Request {
-
+    
 	/**
 	 * A helper class for parsing HTTP command actions.
 	 */
@@ -85,10 +95,12 @@ class Request {
 		}
 	}
 
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	private Action action;
 	private String version;
 	private URI uri;
 	
+	public String tradeType;
 	public String outOrderNo;
 
 	Action action() {
@@ -103,9 +115,10 @@ class Request {
 		return uri;
 	}
 
-	public Request(String outOrderNo) {
+	public Request(String outOrderNo,String tradeType) {
 		super();
 		this.outOrderNo =outOrderNo;
+		this.tradeType  = tradeType;
 	}
 
 	private Request(Action a, String v, URI u) {
@@ -149,9 +162,30 @@ class Request {
 					+ ".*^Host: ([^ ]+)$.*\r\n\r\n\\z", Pattern.MULTILINE
 					| Pattern.DOTALL);
 
-	static Request parse(ByteBuffer bb) throws MalformedRequestException {
+	static Request parse(ByteBuffer bb) throws MalformedRequestException, UnsupportedEncodingException {
 
-		System.out.println("获取客户端请求数据:");
+	    byte[] requestMessage = bb.array();
+	    String requestMsg     = new String(requestMessage,"GBK");
+		System.out.println("获取客户端请求数据:"+requestMsg);
+		String tradeType = null;
+		
+		SAXReader reader = new SAXReader();
+		reader.setStripWhitespaceText(true);
+		Document document;
+        try {
+            document = reader.read(new ByteArrayInputStream(requestMsg.trim().getBytes()));
+            Iterator orderIt = document.selectNodes("/TX/TX_CODE").iterator();
+            while (orderIt.hasNext()) {
+                Element elem = (Element) orderIt.next();
+                tradeType = elem.getText();
+            }
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+
+        
+
+		
 		int i = 0;
 		String outNo = "";
 		String jyteype = "";
@@ -181,7 +215,7 @@ class Request {
 
 		
 		System.out.println("");
-		System.out.println("交易类型："+jyteype);
+		System.out.println("交易类型："+tradeType);
 		System.out.println(outNo);
 		//outOrderNo = outNo;
 		/*CharBuffer cb = ascii.decode(bb);
@@ -201,7 +235,7 @@ class Request {
 			throw new MalformedRequestException();
 		}
 		return new Request(a, m.group(3), u);*/
-		return new Request(outNo);
+		return new Request(outNo,tradeType);
 	}
 	
 	private static String byteToHexString(byte [] arg){
@@ -220,4 +254,13 @@ class Request {
 		
 		return sb.toString();
 	}
+
+    public String getTradeType() {
+        return tradeType;
+    }
+
+    public void setTradeType(String tradeType) {
+        this.tradeType = tradeType;
+    }
+	
 }

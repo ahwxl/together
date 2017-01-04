@@ -13,17 +13,13 @@ public class ReplyTxt implements Sendable{
 
 	ByteBuffer resByte = null;
 	
-	int flag = 2;
+	String filePath    = null;
 	
 	@Override
 	public void prepare() throws IOException {
 	    InputStream in = null;
-	    if(flag % 2 == 0){
-	        in = this.getClass().getResourceAsStream("/jks/paymentResponse.xml");
-	    }else{
-	        in = this.getClass().getResourceAsStream("/jks/refundmentResponse.xml");
-	    }
-		
+	    in = this.getClass().getResourceAsStream(filePath);
+	    //in = this.getClass().getResourceAsStream("/jks/refundmentResponse.xml");
 		byte[] respdata = IOUtils.toByteArray(in);
 		resByte = ByteBuffer.allocate(respdata.length);
 		resByte.put(respdata);
@@ -45,12 +41,8 @@ public class ReplyTxt implements Sendable{
 		resByte.clear();
 	}
 
-    public int getFlag() {
-        return flag;
-    }
-
-    public void setFlag(int flag) {
-        this.flag = flag;
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
 }
