@@ -58,6 +58,7 @@ class RequestHandler implements Handler {
 	private boolean requestReceived = false;
 	private Request request = null;
 	private Reply reply = null;
+	int     flag = 1;
 
 	private static int created = 0;
 
@@ -145,6 +146,8 @@ class RequestHandler implements Handler {
 				/*Reply8583 rep = new Reply8583();
 				rep.setOutOrderNo(request.outOrderNo);*/
 				ReplyTxt rep = new ReplyTxt();
+				rep.setFlag(this.flag);
+				
 				
 				rep.prepare();
 				rep.send(cio);
@@ -215,4 +218,10 @@ class RequestHandler implements Handler {
 			throw x;
 		}
 	}
+
+    public void setFlag(int flag) {
+        this.flag = flag;
+    }
+	
+	
 }

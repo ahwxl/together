@@ -54,6 +54,7 @@ class AcceptHandler implements Handler {
 	private Dispatcher dsp;
 
 	private SSLContext sslContext;
+	int flag = 1;
 
 	AcceptHandler(ServerSocketChannel ssc, Dispatcher dsp, SSLContext sslContext) {
 		channel = ssc;
@@ -76,6 +77,8 @@ class AcceptHandler implements Handler {
 				false /* non-blocking */));
 
 		RequestHandler rh = new RequestHandler(cio);
+		rh.setFlag(this.flag +1);
+		this.flag = this.flag +1;
 		dsp.register(cio.getSocketChannel(), SelectionKey.OP_READ, rh);
 	}
 }
