@@ -40,7 +40,9 @@ import java.io.*;
 import java.nio.*;
 import java.nio.channels.*;
 
+import com.bplow.netconn.base.groovy.RequestMessageParse;
 import com.bplow.netconn.base.net.data.ReplyTxt;
+import com.bplow.netconn.mock.MockMessage;
 
 /**
  * Primary driver class used by non-blocking Servers to receive, prepare, send,
@@ -58,11 +60,13 @@ class RequestHandler implements Handler {
 	private boolean requestReceived = false;
 	private Request request = null;
 	private Reply reply = null;
+	private Server server;
 
 	private static int created = 0;
 
-	RequestHandler(ChannelIO cio) {
+	RequestHandler(ChannelIO cio,Server server) {
 		this.cio = cio;
+		this.server = server;
 
 		// Simple heartbeat to let user know we're alive.
 		synchronized (RequestHandler.class) {
@@ -145,12 +149,16 @@ class RequestHandler implements Handler {
 				/*Reply8583 rep = new Reply8583();
 				rep.setOutOrderNo(request.outOrderNo);*/
 				ReplyTxt rep = new ReplyTxt();
-				if("5W1002".equals(request.getTradeType())){
-				    rep.setFilePath("/jks/paymentResponse.xml");
-				}else{
-				    rep.setFilePath("/jks/refundmentResponse.xml");
-				}
 				
+				
+				RequestMessageParse bean = (RequestMessageParse)server.getBean(server.serverName);
+				MockMessage massage = bean.parseText(new String(this.rbb.array()));
+				
+				if("5W1002".equals(massage.getTansType())){
+                    rep.setFilePath("/jks/paymentResponse.xml");
+                }else{
+                    rep.setFilePath("/jks/refundmentResponse.xml");
+                }
 				
 				rep.prepare();
 				rep.send(cio);

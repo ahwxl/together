@@ -54,11 +54,14 @@ class AcceptHandler implements Handler {
 	private Dispatcher dsp;
 
 	private SSLContext sslContext;
+	
+	private Server server;
 
-	AcceptHandler(ServerSocketChannel ssc, Dispatcher dsp, SSLContext sslContext) {
+	AcceptHandler(ServerSocketChannel ssc, Dispatcher dsp, SSLContext sslContext,Server server) {
 		channel = ssc;
 		this.dsp = dsp;
 		this.sslContext = sslContext;
+		this.server = server;
 	}
 
 	public void handle(SelectionKey sk) throws IOException {
@@ -75,7 +78,7 @@ class AcceptHandler implements Handler {
 				false /* non-blocking */, sslContext) : ChannelIO.getInstance(sc,
 				false /* non-blocking */));
 
-		RequestHandler rh = new RequestHandler(cio);
+		RequestHandler rh = new RequestHandler(cio,this.server);
 		dsp.register(cio.getSocketChannel(), SelectionKey.OP_READ, rh);
 	}
 }

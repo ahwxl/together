@@ -53,7 +53,7 @@ class Dispatcher1 implements Dispatcher {
 
 	private Selector sel;
 
-	Dispatcher1() throws IOException {
+	public Dispatcher1() throws IOException {
 		sel = Selector.open();
 	}
 

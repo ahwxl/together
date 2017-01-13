@@ -9,6 +9,7 @@ import javax.jws.WebService;
 
 
 
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -30,16 +31,14 @@ public class RefreshBeanServiceImpl implements RefreshBeanService,ApplicationCon
 	private ApplicationContext applicationContext = null;
 	
 	@Override
-	public void refresh() {
+	public void refresh(String name) {
 		GroovyDynamicBean groovyBean = new GroovyDynamicBean("parse_scripte");
-
 		dynamicBeanReader.loadBean(groovyBean);
 
-		RequestMessageParse bean = (RequestMessageParse) applicationContext
+		/*RequestMessageParse bean = (RequestMessageParse) applicationContext
 				.getBean("parse_scripte");
-		bean.parseText("abc====");
-		
-		System.out.println("=======================");
+		bean.parseText("abc====");*/
+		System.out.println("刷新");
 	}
 
 	@Override
