@@ -10,9 +10,9 @@ import java.util.Enumeration;
 public class ConventPFX {
     public static final String PKCS12            = "PKCS12";
     public static final String JKS               = "JKS";
-    public static final String PFX_KEYSTORE_FILE = "d:\\cebmerchant.pfx";
-    public static final String KEYSTORE_PASSWORD = "111111";
-    public static final String JKS_KEYSTORE_FILE = "d:\\cebmerchant.jks";
+    public static final String PFX_KEYSTORE_FILE = "d:\\fft-server.pfx";
+    public static final String KEYSTORE_PASSWORD = "123456";
+    public static final String JKS_KEYSTORE_FILE = "D:\\fft-server.jks";
 
     public static void coverTokeyStore() {
         try {
